@@ -14,6 +14,7 @@ public class Misaligned {
         int result = printColorMap();
         assert(result == 25);
            assert(result == 26);
+         assert(result == 30);
            assert(result == 35);
            assert(result == 4);
         System.out.println("All is well (maybe!)");
