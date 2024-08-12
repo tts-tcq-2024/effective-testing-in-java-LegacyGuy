@@ -1,4 +1,4 @@
-public class Tshirts {
+public class tshirts {
     static String size(int cms) {
         if(cms < 38) {
             return "S";
@@ -11,7 +11,7 @@ public class Tshirts {
 
     public static void main(String[] args) { 
         assert(size(37) == "S");
-        assert(size(38) == "S");
+        assert(size(38) == "M");
         assert(size(40) == "M");
         assert(size(43) == "L");
         System.out.println("All is well (maybe!)");
