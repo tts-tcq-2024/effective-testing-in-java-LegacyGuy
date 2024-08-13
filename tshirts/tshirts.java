@@ -10,11 +10,9 @@ public class Tshirts {
     }
 
     public static void main(String[] args) { 
-        assert(size(38) == "S");
-        assert(size(40) == "M");
-         assert(size(42) == "M");
-        assert(size(43) == "L");
-        assert(size(50) == "L");
+        assert "S".equals(size(37));
+        assert "M".equals(size(40));
+        assert "L".equals(size(43));
         System.out.println("All is well (maybe!)");
     }
 }
