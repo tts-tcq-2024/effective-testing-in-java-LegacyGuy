@@ -1,27 +1,28 @@
+import java.util.function.Function;
+
 public class Alerter {
     static int alertFailureCount = 0;
+    static float capturedCelcius;
+
     static int networkAlertStub(float celcius) {
         System.out.println("ALERT: Temperature is " + celcius + " celcius");
-        // Return 200 for ok
-        // Return 500 for not-ok
-        // stub always succeeds and returns 200
-        return 200;
+        return 300;  // Simulating a failure response
     }
-    static void alertInCelcius(float farenheit) {
-        float celcius = (farenheit - 32) * 5 / 9;
-        int returnCode = networkAlertStub(celcius);
+
+    static void alertInCelcius(float fahrenheit, Function<Float, Integer> networkAlertNotifier) {
+        float celcius = (fahrenheit - 32) * 5 / 9;
+        int returnCode = networkAlertNotifier.apply(celcius);
         if (returnCode != 200) {
-            // non-ok response is not an error! Issues happen in life!
-            // let us keep a count of failures to report
-            // However, this code doesn't count failures!
-            // Add a test below to catch this bug. Alter the stub above, if needed.
-            alertFailureCount += 0;
+            // Original bug: The failure count is not being incremented
+            alertFailureCount += 0;  // Incorrect logic, should be incremented
         }
     }
+
     public static void main(String[] args) {
-        alertInCelcius(0);
-        assert(alertInCelcius(0) == 500);
-        alertInCelcius(303.6f);
+        alertInCelcius(400, Alerter::networkAlertStub);
+        float expectedCelcius = (400 - 32) * 5 / 9;
+        assert(alertFailureCount == 1) : "Alert failure count should be 1";
+        assert(capturedCelcius == expectedCelcius) : "Captured Celsius should match expected value";
         System.out.printf("%d alerts failed.\n", alertFailureCount);
         System.out.println("All is well (maybe!)\n");
     }
