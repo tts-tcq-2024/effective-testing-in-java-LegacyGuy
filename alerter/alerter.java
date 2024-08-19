@@ -14,7 +14,7 @@ public class Alerter {
         int returnCode = networkAlertNotifier.apply(celcius);
         if (returnCode != 200) {
             // Original bug: The failure count is not being incremented
-            alertFailureCount += 0;  // Incorrect logic, should be incremented
+            alertFailureCount += 0;
         }
     }
 
